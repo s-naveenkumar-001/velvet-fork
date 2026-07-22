@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: velvet-fork
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: OPENROUTER_MODEL
+        value: openrouter/free
+      - key: OPENROUTER_FALLBACK_MODEL
+        value: meta-llama/llama-3.3-70b-instruct:free
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///restaurant.db
+      - key: FLASK_DEBUG
+        value: "0"

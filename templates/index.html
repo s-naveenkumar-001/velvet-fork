@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ info.NAME }} - Restaurant &amp; Online Ordering</title>
+  <meta name="description" content="{{ info.NAME }} restaurant - browse our menu, book a table, and order food online.">
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="top">
+  {% include "_icons.html" %}
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" data-header>
+    <div class="container">
+      <h1><a href="#top" class="logo">{{ info.NAME }}<span class="span">.</span></a></h1>
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+          <li class="nav-item"><a href="#top" class="navbar-link">Home</a></li>
+          <li class="nav-item"><a href="#about" class="navbar-link">About</a></li>
+          <li class="nav-item"><a href="#food-menu" class="navbar-link">Menu</a></li>
+          <li class="nav-item"><a href="#reservation" class="navbar-link">Reservation</a></li>
+          <li class="nav-item"><a href="#feedback" class="navbar-link">Feedback</a></li>
+          <li class="nav-item"><a href="#contact" class="navbar-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-btn-group">
+        <button class="icon-btn" aria-label="Search" data-search-btn>
+          <svg class="icon" aria-hidden="true"><use href="#icon-search-outline"></use></svg>
+        </button>
+        <button class="btn btn-outline" data-scroll-to-reservation>Reservation</button>
+        <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+          <span class="line top"></span>
+          <span class="line middle"></span>
+          <span class="line bottom"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SEARCH ========== -->
+  <div class="search-container" data-search-container>
+    <div class="search-box">
+      <input type="search" aria-label="Search menu" placeholder="Search the menu... (try it in the chat!)" class="search-input">
+      <button class="search-submit" aria-label="Submit search" data-search-submit-btn>
+        <svg class="icon" aria-hidden="true"><use href="#icon-search-outline"></use></svg>
+      </button>
+    </div>
+    <button class="search-close-btn" aria-label="Cancel search" data-search-close-btn>
+      <svg class="icon" aria-hidden="true"><use href="#icon-close-outline"></use></svg>
+    </button>
+  </div>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-subtitle">Welcome to {{ info.NAME }}</p>
+          <h2 class="h1 hero-title">Great food, made <span class="span">fast</span> and fresh.</h2>
+          <p class="hero-text">From wood-fired pizza to loaded burgers, sizzling noodles, and more - order online or book a table, and let our AI assistant Aether take care of the rest.</p>
+          <button class="btn" data-scroll-to-reservation>Book A Table</button>
+        </div>
+        <figure class="hero-banner">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80&auto=format&fit=crop"
+               width="900" height="675" alt="Assorted delicious food spread" loading="eager">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== PROMO ========== -->
+    <section class="section section-divider promo">
+      <div class="container">
+        <ul class="promo-list">
+          <li class="promo-item">
+            <div class="promo-card">
+              <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-fast-food-outline"></use></svg></div>
+              <h3 class="h3 card-title">Fresh Ingredients</h3>
+              <p class="card-text">Every dish made to order with quality, fresh ingredients.</p>
+            </div>
+          </li>
+          <li class="promo-item">
+            <div class="promo-card">
+              <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bicycle-outline"></use></svg></div>
+              <h3 class="h3 card-title">Fast Delivery</h3>
+              <p class="card-text">Hot food delivered to your door, right on time.</p>
+            </div>
+          </li>
+          <li class="promo-item">
+            <div class="promo-card">
+              <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-chatbubbles-outline"></use></svg></div>
+              <h3 class="h3 card-title">AI Customer Care</h3>
+              <p class="card-text">Ask Aether to book a table, place an order, or check status - any time.</p>
+            </div>
+          </li>
+          <li class="promo-item">
+            <div class="promo-card">
+              <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-pricetag-outline"></use></svg></div>
+              <h3 class="h3 card-title">Weekly Deals</h3>
+              <p class="card-text">{{ info.CURRENT_PROMOTIONS }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section section-divider about" id="about">
+      <div class="container">
+        <div class="about-banner">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80&auto=format&fit=crop"
+               width="700" height="630" alt="Cozy restaurant interior" loading="lazy">
+        </div>
+        <div class="about-content">
+          <p class="section-subtitle">About Us</p>
+          <h2 class="h2 section-title">Burgers, Pizza, and everything in between<span class="span">.</span></h2>
+          <p class="section-text">{{ info.NAME }} has been serving the neighborhood with hand-crafted burgers, wood-fired pizza, and comfort food classics. Every order is prepared fresh, and our AI assistant is here around the clock for reservations, orders, and questions.</p>
+          <ul class="about-list">
+            <li class="about-item"><svg class="icon" aria-hidden="true"><use href="#icon-checkmark-outline"></use></svg><span class="span">Delicious &amp; Healthy Foods</span></li>
+            <li class="about-item"><svg class="icon" aria-hidden="true"><use href="#icon-checkmark-outline"></use></svg><span class="span">Family &amp; Kids Friendly</span></li>
+            <li class="about-item"><svg class="icon" aria-hidden="true"><use href="#icon-checkmark-outline"></use></svg><span class="span">Vegetarian, Vegan &amp; Gluten-Free Options</span></li>
+            <li class="about-item"><svg class="icon" aria-hidden="true"><use href="#icon-checkmark-outline"></use></svg><span class="span">Fast Home Delivery</span></li>
+          </ul>
+          <button class="btn btn-hover" onclick="document.getElementById('food-menu').scrollIntoView({behavior:'smooth'})">Order Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOD MENU ========== -->
+    <section class="section food-menu" id="food-menu">
+      <div class="container">
+        <p class="section-subtitle section-center">Popular Dishes</p>
+        <h2 class="h2 section-title section-center">Our Delicious <span class="span">Foods</span></h2>
+        <p class="section-text section-center">Real menu, real prices - ask Aether about dietary options any time.</p>
+
+        <ul class="filter-list">
+          <li><button class="filter-btn active" data-filter="all">All</button></li>
+          {% for category in categories %}
+          <li><button class="filter-btn" data-filter="{{ category }}">{{ category }}</button></li>
+          {% endfor %}
+        </ul>
+
+        <ul class="food-menu-list">
+          {% for item in menu_items %}
+          <li>
+            <div class="food-menu-card" data-category="{{ item.category }}"
+                 data-item-id="{{ item.id }}" data-item-name="{{ item.name }}" data-item-price="{{ item.price }}">
+              <div class="card-banner">
+                <img src="{{ item.image_url }}" width="300" height="300" loading="lazy" alt="{{ item.name }}">
+                {% if item.discount_pct %}<div class="badge">-{{ item.discount_pct }}%</div>{% endif %}
+              </div>
+              <div class="wrapper">
+                <p class="category">{{ item.category }}</p>
+                <div class="rating-wrapper">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg>
+                  <span>{{ "%.1f"|format(item.rating) }}</span>
+                </div>
+              </div>
+              <h3 class="h3 card-title">{{ item.name }}</h3>
+              <p class="card-desc">{{ item.description }}</p>
+              <div class="diet-tags">
+                {% if item.is_vegetarian %}<span class="diet-tag">Vegetarian</span>{% endif %}
+                {% if item.is_vegan %}<span class="diet-tag">Vegan</span>{% endif %}
+                {% if item.is_gluten_free %}<span class="diet-tag">Gluten-Free</span>{% endif %}
+                {% if not item.contains_nuts %}<span class="diet-tag">Nut-Free</span>{% endif %}
+              </div>
+              <div class="price-wrapper">
+                <data class="price">${{ "%.2f"|format(item.price) }}</data>
+                {% if item.discount_pct %}<del class="del">${{ "%.2f"|format(item.original_price()) }}</del>{% endif %}
+              </div>
+              <div class="card-footer">
+                <div class="qty-control">
+                  <button type="button" class="qty-dec" aria-label="Decrease quantity">-</button>
+                  <span class="qty-display">1</span>
+                  <button type="button" class="qty-inc" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart-btn">Add to Cart</button>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <p class="section-subtitle">Order Online</p>
+            <h2 class="h2">Craving something delicious?</h2>
+            <p class="section-text">Add items to your cart above, or just tell Aether what you're in the mood for.</p>
+          </div>
+          <button class="btn" onclick="document.getElementById('food-menu').scrollIntoView({behavior:'smooth'})">Order Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="section section-divider">
+      <div class="container">
+        <p class="section-subtitle section-center">Testimonials</p>
+        <h2 class="h2 section-title section-center">Our Customers' Reviews</h2>
+        <ul class="testimonials-list">
+          <li>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">"Booked a table through the chatbot in under a minute - it even remembered my dietary restrictions."</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&q=80&auto=format&fit=crop" alt="Robert William">
+                <div><p class="name">Robert William</p><p class="role">Regular Guest</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">"The Bacon Deluxe Burger is incredible, and delivery tracking through Aether is so convenient."</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop" alt="Sophia Turner">
+                <div><p class="name">Sophia Turner</p><p class="role">Food Blogger</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">"Great vegan options and the staff (and the AI!) are always friendly and quick to help."</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80&auto=format&fit=crop" alt="Charles Richard">
+                <div><p class="name">Charles Richard</p><p class="role">Local Guide</p></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== RESERVATION ========== -->
+    <section class="section section-divider split-section" id="reservation">
+      <div class="container">
+        <div>
+          <p class="section-subtitle">Book A Table</p>
+          <h2 class="h2 section-title">Reserve Your Spot</h2>
+          <p class="section-text">Tables hold for {{ info.RESERVATION_DURATION_MINUTES }} minutes. You'll get a confirmation code by chat/on-screen - save it to modify or cancel later.</p>
+          <ul class="info-list">
+            <li class="info-item"><svg class="icon" aria-hidden="true"><use href="#icon-location-outline"></use></svg><div><p class="label">Address</p><p class="value">{{ info.ADDRESS }}</p></div></li>
+            <li class="info-item"><svg class="icon" aria-hidden="true"><use href="#icon-call-outline"></use></svg><div><p class="label">Phone</p><p class="value">{{ info.PHONE }}</p></div></li>
+            <li class="info-item"><svg class="icon" aria-hidden="true"><use href="#icon-time-outline"></use></svg><div><p class="label">Hours</p><p class="value">{{ info.HOURS_TEXT }}</p></div></li>
+          </ul>
+        </div>
+        <form id="reservation-form" class="form-card" novalidate>
+          <h3 class="h3">Book a Table</h3>
+          <div class="field-group">
+            <label for="res-name">Full Name</label>
+            <input type="text" id="res-name" name="full_name" class="input-field" required>
+          </div>
+          <div class="field-group">
+            <label for="res-phone">Phone</label>
+            <input type="tel" id="res-phone" name="phone" class="input-field" required>
+          </div>
+          <div class="field-group">
+            <label for="res-email">Email (optional)</label>
+            <input type="email" id="res-email" name="email" class="input-field">
+          </div>
+          <div class="field-group">
+            <label for="res-party">Party Size</label>
+            <select id="res-party" name="party_size" class="input-field" required>
+              {% for n in range(1, 11) %}<option value="{{ n }}">{{ n }} {{ 'Person' if n == 1 else 'People' }}</option>{% endfor %}
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="res-date">Date</label>
+            <input type="date" id="res-date" name="booking_date" class="input-field" required>
+          </div>
+          <div class="field-group">
+            <label for="res-time">Time</label>
+            <input type="time" id="res-time" name="booking_time" class="input-field" required>
+          </div>
+          <div class="field-group">
+            <label for="res-message">Special Requests (optional)</label>
+            <textarea id="res-message" name="message" class="input-field" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%; justify-content:center;">Book a Table</button>
+          <div class="form-message"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========== FEEDBACK ========== -->
+    <section class="section section-divider split-section" id="feedback">
+      <div class="container">
+        <div>
+          <p class="section-subtitle">We'd Love to Hear From You</p>
+          <h2 class="h2 section-title">Feedback &amp; Complaints</h2>
+          <p class="section-text">Had a great meal, or something wasn't right? Let us know - you can also just tell Aether in the chat.</p>
+        </div>
+        <form id="feedback-form" class="form-card" novalidate>
+          <h3 class="h3">Share Your Feedback</h3>
+          <div class="field-group">
+            <label for="fb-name">Name (optional)</label>
+            <input type="text" id="fb-name" name="customer_name" class="input-field">
+          </div>
+          <div class="field-group">
+            <label for="fb-email">Email (optional)</label>
+            <input type="email" id="fb-email" name="email" class="input-field">
+          </div>
+          <div class="field-group">
+            <label for="fb-rating">Rating</label>
+            <select id="fb-rating" name="rating" class="input-field" required>
+              <option value="5">5 - Excellent</option>
+              <option value="4">4 - Good</option>
+              <option value="3">3 - Average</option>
+              <option value="2">2 - Poor</option>
+              <option value="1">1 - Very Poor</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="fb-order">Related Order Code (optional)</label>
+            <input type="text" id="fb-order" name="related_order_code" class="input-field">
+          </div>
+          <div class="field-group">
+            <label for="fb-comments">Comments</label>
+            <textarea id="fb-comments" name="comments" class="input-field" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%; justify-content:center;">Submit Feedback</button>
+          <div class="form-message"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-brand">
+        <a href="#top" class="logo">{{ info.NAME }}<span class="span">.</span></a>
+        <p class="footer-text">Great food, fast service, and an AI assistant who's always ready to help.</p>
+        <ul class="social-list">
+          <li><a href="#" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#icon-logo-facebook"></use></svg></a></li>
+          <li><a href="#" aria-label="Twitter"><svg class="icon" aria-hidden="true"><use href="#icon-logo-twitter"></use></svg></a></li>
+          <li><a href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-logo-instagram"></use></svg></a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Contact</p>
+        <ul class="footer-list">
+          <li>{{ info.PHONE }}</li>
+          <li>{{ info.EMAIL }}</li>
+          <li>{{ info.ADDRESS }}</li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Opening Hours</p>
+        <ul class="footer-list">
+          <li>Mon, Wed-Fri: 08:00 - 22:00</li>
+          <li>Tuesday: 16:00 - Midnight</li>
+          <li>Saturday: 10:00 - 16:00</li>
+          <li>Sunday: Closed</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 {{ info.NAME }}. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ========== CART ========== -->
+  <button class="cart-fab" id="cart-fab" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#icon-cart-outline"></use></svg>
+    <span>Cart</span>
+    <span class="cart-count" id="cart-count">0</span>
+  </button>
+
+  <div class="modal-overlay" id="cart-modal" hidden>
+    <div class="modal">
+      <button class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      <h3>Your Cart</h3>
+      <div id="cart-lines"></div>
+      <div class="cart-total"><span>Total</span><span id="cart-total-value">$0.00</span></div>
+      <button class="btn" id="checkout-btn" style="width:100%; justify-content:center; margin-top:18px;">Checkout</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="checkout-modal" hidden>
+    <div class="modal">
+      <button class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      <h3>Checkout</h3>
+      <form id="checkout-form" novalidate>
+        <div class="field-group">
+          <label for="co-name">Full Name</label>
+          <input type="text" id="co-name" name="customer_name" class="input-field" required>
+        </div>
+        <div class="field-group">
+          <label for="co-phone">Phone</label>
+          <input type="tel" id="co-phone" name="phone" class="input-field" required>
+        </div>
+        <div class="field-group">
+          <label for="co-email">Email (optional)</label>
+          <input type="email" id="co-email" name="email" class="input-field">
+        </div>
+        <div class="radio-row">
+          <label><input type="radio" name="order_type" value="delivery" checked> Delivery</label>
+          <label><input type="radio" name="order_type" value="pickup"> Pickup</label>
+        </div>
+        <div class="field-group" id="delivery-address-group">
+          <label for="co-address">Delivery Address</label>
+          <input type="text" id="co-address" name="delivery_address" class="input-field">
+        </div>
+        <div class="field-group">
+          <label for="co-notes">Notes (optional)</label>
+          <textarea id="co-notes" name="notes" class="input-field" rows="2"></textarea>
+        </div>
+        <button type="submit" class="btn" style="width:100%; justify-content:center;">Place Order</button>
+        <div class="form-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== CHAT WIDGET ========== -->
+  <div class="chatbox">
+    <div class="chatbox__support">
+      <div class="chatbox__header">
+        <div class="chatbox__image--header">
+          <img src="{{ url_for('static', filename='images/aether-avatar.svg') }}" alt="Aether">
+        </div>
+        <div class="chatbox__content--header">
+          <h4 class="chatbox__heading--header">{{ info.NAME }} Customer Care</h4>
+          <p class="chatbox__description--header">Hi, I'm Aether. How can I help you?</p>
+        </div>
+        <button type="button" class="chatbox__fullscreen-btn" aria-label="Toggle full screen" data-chatbox-fullscreen-btn>
+          <svg class="icon" aria-hidden="true"><use href="#icon-expand-outline"></use></svg>
+        </button>
+      </div>
+      <div class="chatbox__messages"><div></div></div>
+      <div class="chatbox__footer">
+        <input type="text" placeholder="Ask about menu, orders, reservations...">
+        <button class="send__button" aria-label="Send"><svg class="icon" aria-hidden="true"><use href="#icon-send"></use></svg></button>
+      </div>
+    </div>
+    <div class="chatbox__button">
+      <button aria-label="Open chat"><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" alt=""></button>
+    </div>
+  </div>
+
+  <!-- ========== BACK TO TOP ========== -->
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-up"></use></svg>
+  </a>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
