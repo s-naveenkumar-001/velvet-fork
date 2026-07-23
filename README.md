@@ -10,7 +10,7 @@ Reservations, food ordering, cancellations, and feedback — all driven by tool-
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-D71F00?logo=sqlite&logoColor=white)](https://www.sqlalchemy.org/)
 [![OpenRouter](https://img.shields.io/badge/LLM-OpenRouter-8B5FBF)](https://openrouter.ai/)
 [![Tests](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)](./tests)
-[![License](https://img.shields.io/badge/license-unspecified-lightgrey)](#-license)
+[![License](https://img.shields.io/badge/license-MIT-blue)](#-license)
 
 </div>
 
@@ -398,13 +398,10 @@ Tests run against an isolated database via `conftest.py` fixtures — they never
 - [ ] Add user accounts to replace the code+phone identity check
 - [ ] Streaming responses in the chat widget
 - [ ] Admin view for managing menu items, tables, and orders
-- [ ] Add a `LICENSE` file
 
 ## 📄 License
 
-No license file is currently included in this repository — all rights reserved by default until
-one is added. If you intend to share or open-source this project, add a `LICENSE` file (e.g. MIT)
-before publishing.
+Released under the [MIT License](LICENSE).
 
 ---
 
